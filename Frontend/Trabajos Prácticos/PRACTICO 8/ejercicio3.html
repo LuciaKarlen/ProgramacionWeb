@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <form>
+        <label>Nombres</label>
+        <input type="text">
+        <label>Apellidos</label>
+        <input type="text">
+        <label>Email</label>
+        <input type="email">
+        <label>Comentario</label>
+        <textarea></textarea>
+        <button type="button" onclick="envioForm()">Envío de formulario</button>
+        <button type="button" onclick="contarElementos()">Contar elementos</button>
+    </form>
+
+    <script>
+        function envioForm(){
+            alert('Formulario enviado');
+        }
+
+        function contarElementos(){
+            var elementoInput = document.getElementsByTagName('input');
+            alert('La cantidad de input son: ' + elementoInput.length);
+            
+            var elementoLabel = document.getElementsByTagName('label');
+            alert('La cantidad de label son: ' + elementoLabel.length);
+        }
+    </script>
+</body>
+</html>

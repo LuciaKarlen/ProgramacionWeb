@@ -1,0 +1,22 @@
+body{
+    color: red;
+}
+
+a{
+    color: inherit;
+}
+
+p{
+    color: green !important;
+}
+
+#parrafo1{
+    color: brown;
+    font-size: 35px;
+    background-color: wheat;
+}
+
+.texto{ /*selector*/
+    font-family: 'Courier New', Courier, monospace; /*atributos o propiedades*/
+    font-variant-caps: small-caps;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <script>
+        function Auto(marcaInicial, modeloInicial, añoInicial) {
+            this.marca = marcaInicial;
+            this.modelo = modeloInicial;
+            this.año = añoInicial;
+
+            this.cambiarModelo = function(nuevoModelo) {
+                this.modelo = nuevoModelo;
+            };
+
+            this.mostrarDetalles = function() {
+                return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año}`;
+            };
+        }
+
+        Auto.prototype.color = "Desconocido"; // Nueva propiedad
+        Auto.prototype.cambiarColor = function(nuevoColor) { // Nuevo método
+            this.color = nuevoColor;
+        };
+
+        var otroAuto = new Auto("Chevrolet", "Cruze", 2020);
+        otroAuto.cambiarColor("Rojo");
+        console.log('Detalles del otro auto:', otroAuto.mostrarDetalles());
+        console.log('Color del otro auto:', otroAuto.color);
+    </script>
+</body>
+</html>

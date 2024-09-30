@@ -1,0 +1,19 @@
+#titulosubrayado{
+    color: pink;
+    background-color: black;
+}
+
+#tituloprincipal{
+    text-align: center;
+}
+
+#linkprincipal{
+    color: peru;
+    text-decoration: none;
+}
+
+#titulosubrayado:hover{
+    background-color: red;
+    color: white;
+    transition: background-color 3s;
+}

@@ -1,0 +1,23 @@
+.header{
+    text-align: center;
+    color: magenta;
+    text-shadow: 4px 4px 10px black;
+}
+
+.titulosecundario{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    color: red;
+}
+
+.lista{
+    color: inherit;
+}
+
+.lista:hover{
+    font-size: 20px;
+    color: magenta;
+}

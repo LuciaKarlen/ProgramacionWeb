@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var persona = {
+            nombre: 'Juan',
+            edad: 30,
+            moto: {
+                modelo: 2018,
+                marca: "Honda"
+            },
+            mostrarNombre: function(){
+                alert('Me llamo ' + this.nombre);
+            },
+            cambiarNombre: function(nuevo){
+                this.nombre = nuevo;
+            }
+
+        }
+
+        // console.log(persona.nombre);
+
+        var empleado = Object.create(persona);
+        empleado.nombre = "Agus";
+        // console.log(empleado.mostrarNombre());
+
+        var empleado1 = Object.create(empleado);
+        empleado1.edad = 17;
+        empleado1.mostrarEdad = function(){
+            alert("La edad es: " + this.edad);
+        }
+        // console.log(empleado1.mostrarEdad());
+
+        /*Creación del objeto emdiante la notación literal, función anónima y retorno*/
+/*         var miPersona = function(nombreInicial, edadInicial){
+            var obj={
+                nombre: nombreInicial,
+                edad: edadInicial,
+                cambiarNombre: function(nombreInicial){
+                    this.nombre = nombreInicial;
+                },
+                mostrarNombre: function(){
+                    alert("Mi nombre es: " + this.nombre);
+                }
+            }
+            return obj;
+        } */
+
+/*         var p = miPersona("Maria", 22);
+        p.mostrarNombre(); */
+
+        function Constructor(nombreInicial, edadInicial){
+            this.nombre = nombreInicial;
+            this.edad = edadInicial;
+
+            this.cambiarNombre = function(nuevoNombre){
+                this.nombre = nuevoNombre;
+            };
+
+            this.mostrarNombre = function(){
+                alert("Mi nombre es " + this.nombre);
+            };
+        }
+
+        var nuevaPersona = new Constructor("Eliana", 20);
+        nuevaPersona.mostrarNombre();
+
+        nuevaPersona.peso = 50;
+        nuevaPersona.mostrarNombre();
+        alert("Mi peso es " + nuevaPersona.peso);
+
+        Constructor.prototype.mostrarEdad = function(){
+            alert(this.edad);
+        }
+        var otraPersona = new Constructor("Sandra", 28);
+        otraPersona.mostrarEdad();
+
+        otraPersona.apellido = "Karlen";
+        Constructor.prototype.mostrarApellido = function(){
+            alert(this.apellido);
+        }
+        otraPersona.mostrarApellido();
+    </script>
+</body>
+</html>

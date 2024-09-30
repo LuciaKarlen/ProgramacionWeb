@@ -1,0 +1,13 @@
+#titulosubrayado{
+    color: pink;
+    background-color: black;
+}
+
+#tituloprincipal{
+    text-align: center;
+}
+
+#linkprincipal{
+    color: peru;
+    text-decoration: none;
+}

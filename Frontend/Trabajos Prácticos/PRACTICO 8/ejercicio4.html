@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <style>
+        table {
+            width: 50%;
+        }
+        table, th, td {
+            border: 2px solid black;
+            text-align: center;
+            padding: 5px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            text-align: center;
+            border: none;
+        }
+        input[type="text"] {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Camisa</td>
+                <td id="precio1">30000</td>
+                <td><input type="number" id="cantidad1"></td>
+                <td id="subtotal1"></td>
+            </tr>
+            <tr>
+                <td>Gorra</td>
+                <td id="precio2">50000</td>
+                <td><input type="number" id="cantidad2"></td>
+                <td id="subtotal2"></td>
+            </tr>
+            <tr>
+                <td>Zapatos</td>
+                <td id="precio3">60000</td>
+                <td><input type="number" id="cantidad3"></td>
+                <td id="subtotal3"></td>
+            </tr>
+            <tr>
+                <td>Pantalón</td>
+                <td id="precio4">80000</td>
+                <td><input type="number" id="cantidad4"></td>
+                <td id="subtotal4"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <label>Total compra: </label>
+    <input input="text" id="total" readonly></input>
+    <button type="button" id="botonSubtotal">calcular subtotal</button>
+    <button type="button" id="botonTotal">calcular total</button>
+
+    <script>
+        function calcularSubtotales() {
+            for (let i = 1; i <= 4; i++) {
+                let precio = parseFloat(document.getElementById(`precio${i}`).textContent);
+                let cantidad = parseFloat(document.getElementById(`cantidad${i}`).value) || 0;
+                let subtotal = precio * cantidad;
+                document.getElementById(`subtotal${i}`).textContent = subtotal.toFixed(2);
+            }
+        }
+
+        function calcularTotal() {
+            let total = 0;
+            for (let i = 1; i <= 4; i++) {
+                let subtotal = parseFloat(document.getElementById(`subtotal${i}`).textContent) || 0;
+                total += subtotal;
+            }
+            document.getElementById('total').value = total.toFixed(2);
+        }
+
+        document.getElementById('botonSubtotal').addEventListener('click', calcularSubtotales);
+        document.getElementById('botonTotal').addEventListener('click', calcularTotal);
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <script>
+        const pueblo ={
+            nombre: "Freyre",
+            habitantes: 8708,
+            provincia: "Córdoba",
+
+            cambiarHabitantes: function(habitantes){
+                this.habitantes = habitantes;
+            }
+        }
+
+        const nuevo = Object.create(pueblo);
+        alert("Habitantes del pueblo: " + pueblo.habitantes);
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+    <script>
+        var nombre='Lucía';
+        var apellido = 'Karlen';
+        console.log(nombre);
+        console.log(typeof nombre);
+
+        var numero1 = 5
+        var numero2 = 5.2
+        console.log('El tipo de numero 1 es:', typeof(numero1), 'y el valor es: ', numero1);
+        console.log('El tipo de numero 2 es:', typeof(numero2), 'y el valor es: ', numero2);
+
+        var r = numero1 + numero2;
+        console.log('El resultado es: ' + r);
+
+        var arr = [25, 'hola', 21, true];
+        console.log('Cantidad de elementos del array:', arr.length, 'y el 3° elemento es:', arr[2]);
+
+        var persona = {
+            nombre: 'Lucía',
+            edad: 30,
+            "Mi pais": "Arg",
+            texto:function(){
+                console.log("soy full-stack");
+            }
+        }
+        console.log("El objeto es:", persona, "con nombre:", persona.nombre);
+        persona.texto();
+        alert(arr[1]);
+        
+        console.log(eval("2+2"))
+
+        function saludar(tipo, nombre){
+            var tipo = tipo || "Hola";
+            var nombre = nombre || "Lucía";
+            return tipo + ' ' + nombre;
+        }
+
+        console.log(saludar());
+        alert(saludar("Chau", "Pedro"));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

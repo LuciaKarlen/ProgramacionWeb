@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <button id="idBoton">Enviar</button>
+    <script>
+        //document.getElementById("idBoton").addEventListener("click", function(){
+        //    mostrarMensaje();
+        //});
+
+/*         var elemento = document.getElementById("idBoton");
+        elemento.addEventListener('mouseup', mostrarMensaje1);
+        elemento.addEventListener("click", mostrarMensaje2)
+
+        function mostrarMensaje1(){
+            alert("Mouseup");
+        }
+        function mostrarMensaje2(){
+            alert("Click");
+        } */
+
+        document.getElementById('idBoton').addEventListener("click", function(){
+            saludar('Lucía');
+        });
+
+        function saludar(nombre){
+            alert('Hola ' + nombre);
+        }
+    </script>
+</body>
+</html>

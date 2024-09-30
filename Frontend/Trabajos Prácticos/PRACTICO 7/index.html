@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            border: none;
+            border-bottom: 2px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+
+    </header>
+    <form id="form-datos">
+        <p>Nombre: <input type="text" id="nombre" placeholder="Nombre"></p>
+        <p>Apellido: <input type="text" id="apellido" placeholder="Apellido"></p>
+        <p>Fecha de nacimiento: <input type="date" class="datos" placeholder="Fecha de Nacimiento"></p>
+        <p>Dirección: <input type="text" class="datos" placeholder="Dirección"></p>
+        <p>DNI: <input type="text" class="datos" placeholder="DNI"></p>
+        <button type="button" onclick="completarNombreyApellido()">Completar Nombre y Apellido</button>
+        <button type="button" onclick="completarDni()">Completar DNI</button>
+        <button type="button" onclick="crearSexo()">Sexo</button>
+        <button type="button" onclick="crearTitulo()">Titulo</button>
+        <button type="button" onclick="borrarTitulo()">Borrar Titulo</button>
+    </form>
+    <footer>
+
+    </footer>
+    <script>
+        function completarNombreyApellido(){
+            var elementNombre = document.getElementById('nombre');
+            elementNombre.value = 'Lucía';
+
+            var elementApellido = document.getElementById('apellido');
+            elementApellido.value = 'Karlen';
+        }
+
+        function completarDni(){
+            var element = document.getElementsByClassName('datos');
+            element[0].value = '2003-05-03';
+            element[1].value = 'Cabrera 4061';
+            element[2].value = '44695255';
+        }
+
+        function crearSexo(){
+            var elementos = document.getElementsByTagName('footer');
+
+            var botonfem = document.createElement('input');
+            botonfem.type="radio";
+            var textofem = document.createTextNode('Femenino');
+            botonfem.appendChild(textofem);
+
+            var botonmasc = document.createElement('input');
+            botonmasc.type="radio";
+            var textomasc = document.createTextNode('Masculino');
+            botonmasc.appendChild(textomasc);
+
+            for(var i= 0; i< elementos.length;i++){
+                elementos[i].appendChild(botonfem);
+                elementos[i].appendChild(textofem);
+                elementos[i].appendChild(botonmasc);
+                elementos[i].appendChild(textomasc);
+            }
+        }
+
+        function crearTitulo(){
+            var elementos = document.getElementsByTagName('header');
+
+            var encab = document.createElement('h1');
+            var texto = document.createTextNode('Datos Personales');
+            encab.appendChild(texto);
+
+            for(var i= 0; i< elementos.length;i++){
+                elementos[i].appendChild(encab);
+            }
+        }
+
+        function borrarTitulo(){
+            var elemento = document.getElementById('header');
+            elemento.removeChild(elemento.childNodes[0]);
+        }
+    </script>
+</body>
+</html>

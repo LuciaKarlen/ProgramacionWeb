@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <script>
+        function Auto(marcaInicial, modeloInicial, añoInicial) {
+            this.marca = marcaInicial;
+            this.modelo = modeloInicial;
+            this.año = añoInicial;
+
+            this.cambiarModelo = function(nuevoModelo) {
+                this.modelo = nuevoModelo;
+            };
+
+            this.mostrarDetalles = function() {
+                return `---- Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año} ----`;
+            };
+        }
+
+        var miAuto = new Auto("Ford", "Fiesta", 2015);
+        miAuto.cambiarModelo("Focus");
+        console.log('Detalles del auto:', miAuto.mostrarDetalles());
+    </script>
+</body>
+</html>

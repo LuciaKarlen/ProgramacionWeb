@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <a href="google.com">Google</a>
+    <a href="facebook.com">Facebook</a>
+    <a href="youtube.com">Youtube</a>
+    <a href="twitter.com">Twitter</a>
+
+    <button type="button" onclick="contarElementos()">Contar elementos</button>
+
+    <script>
+
+        function contarElementos(){
+            var elemento = document.getElementsByTagName('a');
+            alert('La cantidad de elementos con etiqueta a son: ' + elemento.length);
+        }
+    </script>
+</body>
+</html>
