@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/ejercicio1.js" defer></script>
+    <title>Ejercicio 2</title>
+</head>
+
+<body onload="iniciar()">
+    <section id="cajaformulario">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Ej: Juan" id="first_name" type="text" class="validate" required>
+                    <label for="first_name">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" required>
+                    <label for="last_name">Apellido</label>
+                </div>
+            </div>
+             <div class="row"></div>
+                <div class="input-field col s12">
+                    <input id="legajo" type="number" class="validate" required>
+                    <label for="legajo">Legajo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="fnacimiento" type="date" class="validate">
+                    <label for="fnacimiento">Fecha de nacimiento</label>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="dni" type="number" class="validate">
+                    <label for="dni">DNI</label>
+                </div>
+            </div>
+            <input type="button" id="grabar" value="Grabar" class="btn"><br>
+        </form>
+    </div>
+    </section>
+    <section id="cajadatos">
+        sin informacion
+    </section>
+</body>
+
+</html>
