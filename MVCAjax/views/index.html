@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Usuarios</title>
+    <style>
+        /* Estilos personalizados */
+        .btn {
+            margin-top: 10px;
+            margin-left: 10px;
+            align-items: center;
+        }
+        #user-list .collection-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Agregar usuario</h2>
+    <form id="user-form">
+        <input type="text" id="name" placeholder="Nombre" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit" class="btn">Añadir Usuario</button>
+    </form>
+    
+    <h2>Lista de Usuarios</h2>
+    <ul id="user-list" class="collection">
+        <!-- Aquí se generarán los usuarios -->
+    </ul>
+
+    <button onclick="window.location.href='/products-page'" class="btn blue">Ir a Productos</button>
+</div>
+
+<div id="editUserModal" class="modal">
+    <div class="modal-content">
+        <h4>Editar Usuario</h4>
+        <form id="edit-user-form">
+            <input type="text" id="edit-name" placeholder="Nombre" required>
+            <input type="email" id="edit-email" placeholder="Email" required>
+            <button type="submit" class="btn">Guardar Cambios</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn red">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal de confirmación de eliminación -->
+<div id="confirmDeleteModal" class="modal">
+    <div class="modal-content">
+        <h4>Confirmación</h4>
+        <p>¿Está seguro de que desea eliminar al usuario <span id="user-name-to-delete"></span>?</p>
+    </div>
+    <div class="modal-footer">
+        <button id="confirm-delete" class="modal-close btn red">Eliminar</button>
+        <button class="modal-close btn grey">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal de éxito en la eliminación -->
+<div id="deleteSuccessModal" class="modal">
+    <div class="modal-content">
+        <h4>Éxito</h4>
+        <p>Usuario <span id="user-name-deleted"></span> eliminado correctamente.</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn green">Aceptar</button>
+    </div>
+</div>
+
+<script src="/js/ajax.js"></script>
+</body>
+</html>
