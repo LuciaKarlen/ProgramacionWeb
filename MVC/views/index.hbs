@@ -1,0 +1,22 @@
+<h1>Lista de Usuarios</h1>
+<form action="/users/create" method="POST">
+    <div class="input-field">
+        <input type="text" name="name" id="name" required>
+        <label for="name">Nombre</label>
+    </div>
+    <div class="input-field">
+        <input type="email" name="email" id="email" required>
+        <label for="email">Email</label>
+    </div>
+    <div class="input-field">
+        <input type="text" name="dni" id="dni" required>
+        <label for="dni">Dni</label>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">Agregar Usuario</button>
+</form>
+
+<ul class="collection">
+    {{#each users}}
+        <li class="collection-item">{{this.name}} - {{this.email}} - {{this.dni}}</li>
+    {{/each}}
+</ul>
