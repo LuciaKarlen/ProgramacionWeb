@@ -1,0 +1,20 @@
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #AB886D;
+    border-color: #AB886D;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #8A6B5C;
+    border-color: #8A6B5C;
+}

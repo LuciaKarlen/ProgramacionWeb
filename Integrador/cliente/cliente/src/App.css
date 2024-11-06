@@ -1,0 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
+    color: #493628;
+}
+
+h1, h4 {
+    color: #AB886D;
+}
+
+.container {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    border: 1px solid #AB886D;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #AB886D;
+    border-color: #AB886D;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #8A6B5C;
+    border-color: #8A6B5C;
+}
+
+.btn-secondary {
+    background-color: #D6C0B3;
+    border-color: #D6C0B3;
+    color: #493628;
+}
+
+.btn-secondary:hover {
+    background-color: #B89E8A;
+    border-color: #B89E8A;
+}
+
+.btn-danger {
+    background-color: #493628;
+    border-color: #493628;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #3A2C22;
+    border-color: #3A2C22;
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border: 1px solid #AB886D;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #493628;
+}
+
+.card-text {
+    color: #493628;
+}
