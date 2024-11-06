@@ -1,0 +1,26 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../database'); // Archivo de configuración de Sequelize
+
+const Proveedor = sequelize.define('Proveedor', {
+  nombre: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  domicilio: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  cuit: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  condicion_iva: {
+    type: DataTypes.ENUM("responsable inscripto", "excento", "consumidor final", "monotibutista"),
+    allowNull: false,
+  }
+}, {
+  tableName: 'proveedores',  // Nombre de la tabla en la base de datos SQLite
+  timestamps: true,       // Para que Sequelize maneje createdAt y updatedAt
+});
+
+module.exports = Proveedor;
