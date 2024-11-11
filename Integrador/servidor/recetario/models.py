@@ -18,7 +18,6 @@ class Receta(models.Model):
     tiempo = models.IntegerField()
     tipo = models.ForeignKey(TipoReceta, on_delete=models.CASCADE)
     pasos = models.TextField(null=True, blank=True)  # New field for steps
-    foto = models.ImageField(upload_to='recetas/', null=True, blank=True)
 
     def __str__(self):
         return self.titulo

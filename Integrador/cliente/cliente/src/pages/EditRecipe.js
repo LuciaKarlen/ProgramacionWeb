@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const CreateRecipe = () => {
+const EditRecipe = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [tiempo, setTiempo] = useState('');
     const [tipo, setTipo] = useState('');
     const [ingredientes, setIngredientes] = useState([{ ingrediente: '', cantidad: '' }]);
-    const [pasos, setPasos] = useState(''); // New state for steps
+    const [pasos, setPasos] = useState('');
     const [tipos, setTipos] = useState([]);
     const [listaIngredientes, setListaIngredientes] = useState([]);
     const [successMessage, setSuccessMessage] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     useEffect(() => {
+        axios.get(`http://localhost:8000/api/recetas/${id}/`)
+            .then(response => {
+                const receta = response.data;
+                setTitulo(receta.titulo);
+                setDescripcion(receta.descripcion);
+                setTiempo(receta.tiempo);
+                setTipo(receta.tipo);
+                setIngredientes(receta.recetaingredientes);
+                setPasos(receta.pasos);
+            })
+            .catch(error => console.error('Error fetching recipe:', error));
+
         axios.get('http://localhost:8000/api/tipos/')
             .then(response => setTipos(response.data))
             .catch(error => console.error('Error loading recipe types:', error));
@@ -21,7 +36,7 @@ const CreateRecipe = () => {
         axios.get('http://localhost:8000/api/ingredientes/')
             .then(response => setListaIngredientes(response.data))
             .catch(error => console.error('Error loading ingredients:', error));
-    }, []);
+    }, [id]);
 
     const handleIngredientChange = (index, field, value) => {
         const newIngredients = [...ingredientes];
@@ -41,31 +56,28 @@ const CreateRecipe = () => {
             tiempo: parseInt(tiempo),
             tipo,
             recetaingredientes: ingredientes,
-            pasos // Include steps in the request
+            pasos
         };
 
-        axios.post('http://localhost:8000/api/recetas/', recetaData, {
+        axios.put(`http://localhost:8000/api/recetas/${id}/`, recetaData, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(response => {
-                setSuccessMessage('Receta creada exitosamente.');
+                setSuccessMessage('Receta actualizada exitosamente.');
                 setShowSuccessMessage(true);
-                setTitulo('');
-                setDescripcion('');
-                setTiempo('');
-                setTipo('');
-                setIngredientes([{ ingrediente: '', cantidad: '' }]);
-                setPasos(''); // Reset steps
-                setTimeout(() => setShowSuccessMessage(false), 3000);
+                setTimeout(() => {
+                    setShowSuccessMessage(false);
+                    navigate(`/receta/${id}`);
+                }, 3000);
             })
-            .catch(error => console.error('Error creating recipe:', error));
+            .catch(error => console.error('Error updating recipe:', error));
     };
 
     return (
         <div className="container">
-            <h1 className="my-4">Agregar Receta</h1>
+            <h1 className="my-4">Editar Receta</h1>
             {showSuccessMessage && <div style={{ color: '#493628', marginTop: '10px' }}>{successMessage}</div>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -114,8 +126,16 @@ const CreateRecipe = () => {
                     <label>Ingredientes</label>
                     {ingredientes.map((ing, index) => (
                         <div key={index} className="d-flex mb-2">
-                            <select
+                            <input
+                                type="text"
                                 className="form-control mr-2"
+                                placeholder="Cantidad"
+                                value={ing.cantidad}
+                                onChange={(e) => handleIngredientChange(index, 'cantidad', e.target.value)}
+                                required
+                            />
+                            <select
+                                className="form-control"
                                 value={ing.ingrediente}
                                 onChange={(e) => handleIngredientChange(index, 'ingrediente', e.target.value)}
                                 required
@@ -125,14 +145,6 @@ const CreateRecipe = () => {
                                     <option key={ingr.id} value={ingr.id}>{ingr.nombre}</option>
                                 ))}
                             </select>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Cantidad"
-                                value={ing.cantidad}
-                                onChange={(e) => handleIngredientChange(index, 'cantidad', e.target.value)}
-                                required
-                            />
                         </div>
                     ))}
                     <button type="button" className="btn btn-secondary mt-2" onClick={addIngredient}>Agregar Ingrediente</button>
@@ -145,10 +157,10 @@ const CreateRecipe = () => {
                         onChange={(e) => setPasos(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary mt-3">Agregar Receta</button>
+                <button type="submit" className="btn btn-primary mt-3">Guardar Cambios</button>
             </form>
         </div>
     );
 };
 
-export default CreateRecipe;
+export default EditRecipe;
