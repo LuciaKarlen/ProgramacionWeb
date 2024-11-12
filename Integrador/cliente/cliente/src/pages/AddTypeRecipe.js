@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaTrash } from 'react-icons/fa';
+import './Home.css'; // Import the CSS file
 
 const AddTypeRecipe = () => {
     const [nombre, setNombre] = useState('');
     const [tipos, setTipos] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         fetchTipos();
@@ -20,7 +23,6 @@ const AddTypeRecipe = () => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/tipos/', { nombre })
             .then(response => {
-                console.log('Recipe type created:', response.data);
                 setNombre('');
                 fetchTipos();
             })
@@ -29,11 +31,21 @@ const AddTypeRecipe = () => {
 
     const handleEdit = (id, newName) => {
         axios.put(`http://localhost:8000/api/tipos/${id}/`, { nombre: newName })
-            .then(response => {
-                console.log('Recipe type updated:', response.data);
-                fetchTipos();
-            })
+            .then(response => fetchTipos())
             .catch(error => console.error('Error updating recipe type:', error));
+    };
+
+    const handleDelete = (id) => {
+        axios.delete(`http://localhost:8000/api/tipos/${id}/`)
+            .then(response => fetchTipos())
+            .catch(error => {
+                if (error.response && error.response.status === 400) {
+                    setErrorMessage('No se puede eliminar porque está asociado a una receta.');
+                } else {
+                    console.error('Error deleting recipe type:', error);
+                }
+                setTimeout(() => setErrorMessage(''), 3000); // Clear error message after 3 seconds
+            });
     };
 
     return (
@@ -52,6 +64,7 @@ const AddTypeRecipe = () => {
                 </div>
                 <button type="submit" className="btn btn-primary mt-3">Agregar</button>
             </form>
+            {errorMessage && <div className="error-message mt-3">{errorMessage}</div>}
             <h2 className="my-4">Tipos de Recetas</h2>
             <ul className="list-group">
                 {tipos.map(tipo => (
@@ -62,6 +75,7 @@ const AddTypeRecipe = () => {
                             value={tipo.nombre}
                             onChange={(e) => handleEdit(tipo.id, e.target.value)}
                         />
+                        <FaTrash className="text-danger ml-2" onClick={() => handleDelete(tipo.id)} />
                     </li>
                 ))}
             </ul>

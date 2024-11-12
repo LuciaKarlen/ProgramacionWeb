@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets, status
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from .models import TipoReceta, Ingrediente, Receta, RecetaIngrediente
@@ -10,9 +11,21 @@ class TipoRecetaViewSet(viewsets.ModelViewSet):
     queryset = TipoReceta.objects.all()
     serializer_class = TipoRecetaSerializer
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if Receta.objects.filter(tipo=instance).exists():
+            raise ValidationError('No se puede eliminar porque está asociado a una receta.')
+        return super().destroy(request, *args, **kwargs)
+
 class IngredienteViewSet(viewsets.ModelViewSet):
     queryset = Ingrediente.objects.all()
     serializer_class = IngredienteSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if RecetaIngrediente.objects.filter(ingrediente=instance).exists():
+            raise ValidationError('No se puede eliminar porque está asociado a una receta.')
+        return super().destroy(request, *args, **kwargs)
 
 class RecetaViewSet(viewsets.ModelViewSet):
     queryset = Receta.objects.all()

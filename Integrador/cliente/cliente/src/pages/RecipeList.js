@@ -8,6 +8,7 @@ const RecipeList = () => {
     const navigate = useNavigate();
     const { searchTitle, selectedIngredient, selectedRecipeType } = location.state;
     const [recipes, setRecipes] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         let query = 'http://localhost:8000/api/recetas/?';
@@ -16,8 +17,18 @@ const RecipeList = () => {
         if (selectedRecipeType) query += `tipo=${selectedRecipeType}&`;
 
         axios.get(query)
-            .then(response => setRecipes(response.data))
-            .catch(error => console.error('Error fetching recipes:', error));
+            .then(response => {
+                if (response.data.length === 0) {
+                    setErrorMessage('No se encontraron recetas.');
+                } else {
+                    setRecipes(response.data);
+                    setErrorMessage('');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching recipes:', error);
+                setErrorMessage('Error al cargar las recetas.');
+            });
     }, [searchTitle, selectedIngredient, selectedRecipeType]);
 
     const handleRecipeClick = (id) => {
@@ -27,6 +38,7 @@ const RecipeList = () => {
     return (
         <div className="container">
             <h1 className="my-4">Resultados de la búsqueda</h1>
+            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
             <div className="row">
                 {recipes.map((recipe) => (
                     <div key={recipe.id} className="col-md-4">

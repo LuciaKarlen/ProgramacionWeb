@@ -18,3 +18,8 @@
     background-color: #8A6B5C;
     border-color: #8A6B5C;
 }
+
+.error-message {
+    color: #8A6B5C;
+    font-weight: bold;
+}

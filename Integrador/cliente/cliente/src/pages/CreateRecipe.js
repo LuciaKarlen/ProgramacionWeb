@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRecipe = () => {
     const [titulo, setTitulo] = useState('');
@@ -7,11 +8,10 @@ const CreateRecipe = () => {
     const [tiempo, setTiempo] = useState('');
     const [tipo, setTipo] = useState('');
     const [ingredientes, setIngredientes] = useState([{ ingrediente: '', cantidad: '' }]);
-    const [pasos, setPasos] = useState(''); // New state for steps
+    const [pasos, setPasos] = useState('');
     const [tipos, setTipos] = useState([]);
     const [listaIngredientes, setListaIngredientes] = useState([]);
-    const [successMessage, setSuccessMessage] = useState('');
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/tipos/')
@@ -41,7 +41,7 @@ const CreateRecipe = () => {
             tiempo: parseInt(tiempo),
             tipo,
             recetaingredientes: ingredientes,
-            pasos // Include steps in the request
+            pasos
         };
 
         axios.post('http://localhost:8000/api/recetas/', recetaData, {
@@ -50,15 +50,7 @@ const CreateRecipe = () => {
             }
         })
             .then(response => {
-                setSuccessMessage('Receta creada exitosamente.');
-                setShowSuccessMessage(true);
-                setTitulo('');
-                setDescripcion('');
-                setTiempo('');
-                setTipo('');
-                setIngredientes([{ ingrediente: '', cantidad: '' }]);
-                setPasos(''); // Reset steps
-                setTimeout(() => setShowSuccessMessage(false), 3000);
+                navigate(`/receta/${response.data.id}`);
             })
             .catch(error => console.error('Error creating recipe:', error));
     };
@@ -66,7 +58,6 @@ const CreateRecipe = () => {
     return (
         <div className="container">
             <h1 className="my-4">Agregar Receta</h1>
-            {showSuccessMessage && <div style={{ color: '#493628', marginTop: '10px' }}>{successMessage}</div>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Título</label>

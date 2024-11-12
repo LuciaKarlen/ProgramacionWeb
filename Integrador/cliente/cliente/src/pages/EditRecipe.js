@@ -13,8 +13,6 @@ const EditRecipe = () => {
     const [pasos, setPasos] = useState('');
     const [tipos, setTipos] = useState([]);
     const [listaIngredientes, setListaIngredientes] = useState([]);
-    const [successMessage, setSuccessMessage] = useState('');
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recetas/${id}/`)
@@ -65,12 +63,7 @@ const EditRecipe = () => {
             }
         })
             .then(response => {
-                setSuccessMessage('Receta actualizada exitosamente.');
-                setShowSuccessMessage(true);
-                setTimeout(() => {
-                    setShowSuccessMessage(false);
-                    navigate(`/receta/${id}`);
-                }, 3000);
+                navigate(`/receta/${id}`);
             })
             .catch(error => console.error('Error updating recipe:', error));
     };
@@ -78,7 +71,6 @@ const EditRecipe = () => {
     return (
         <div className="container">
             <h1 className="my-4">Editar Receta</h1>
-            {showSuccessMessage && <div style={{ color: '#493628', marginTop: '10px' }}>{successMessage}</div>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Título</label>
